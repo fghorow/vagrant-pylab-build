@@ -21,13 +21,14 @@ Vagrant.configure("2") do |config|
   echo I am provisioning...
   date > /etc/vagrant_provisioned_at
   cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
+  # Enabling mirrors
   echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse > /etc/apt/sources.list
   echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse >> /etc/apt/sources.list
   echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restricted universe multiverse >> /etc/apt/sources.list
   echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse >> /etc/apt/sources.list
   echo >> /etc/apt/sources.list
   cat < /etc/apt/sources.list.old.pylab >> /etc/apt/sources.list
-  exit
+  # Full update
   aptitude -y update
   aptitude -y full-upgrade
   aptitude -y install build-essential
@@ -38,13 +39,16 @@ Vagrant.configure("2") do |config|
   aptitude -y install libzmq-dev
   aptitude -y install libqt4-dev
   aptitude -y install libqt4-opengl-dev
+  # Clean up
   aptitude -y clean
   aptitude -y autoclean
+  # Install pip
   curl http://python-distribute.org/distribute_setup.py | python3
   curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3
+  # Python tools
   pip-3.2 install pyside
+  # Pip will be cleaned by reboot since it works in /tmp
 SCRIPT
   config.vm.provision :shell, :inline => $script
-
 end
 
