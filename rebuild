@@ -5,6 +5,7 @@
 vagrant destroy
 vagrant up
 vagrant ssh <<SCRIPT
+  sudo bash <<LEVEL2SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
   cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
@@ -18,10 +19,12 @@ vagrant ssh <<SCRIPT
   # Full update
   aptitude -y update
   aptitude -y full-upgrade
+LEVEL2SCRIPT
 SCRIPT
 vagrant halt
 vagrant up --no-provision
 vagrant ssh <<SCRIPT
+  sudo bash <<LEVEL2SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
   aptitude -y install build-essential
@@ -41,10 +44,11 @@ vagrant ssh <<SCRIPT
   # Python tools
   pip-3.2 install pyside
   # Pip will be cleaned by reboot since it works in /tmp
+LEVEL2SCRIPT
 SCRIPT
 vagrant halt
 vagrant up --no-provision
-vagrant ssh <<SCRIPT
+vagrant ssh -c sudo bash <<SCRIPT
   dd if=/dev/zero of=/tmp/zero.pylab bs=2048
   sync
   rm /tmp/zero.pylab
