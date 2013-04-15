@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
-vagrant destroy
-vagrant up
-
+#vagrant destroy
+#vagrant up
+vagrant halt
+vagrant up --no-provision
+vagrant ssh <<SCRIPT
+dd if=/dev/zero of=/tmp/zero.pylab bs=2048
+sync
+rm /tmp/zero.pylab
+sync
+SCRIPT
+vagrant halt
+HDDID=`VBoxManage showvminfo python3pylab --machinereadable | \
+     grep "SATA Controller-ImageUUID-" | cut -d = -f 2 | tr -d \"`
+HDDFILE=`VBoxManage showvminfo python3pylab --machinereadable | \
+     grep "SATA Controller-" | grep -v "-ImageUUID-" | cut -d = -f 2 | tr -d \"`
+VBoxManage clonehd "$HDDID" "out.vmdk"
+mv "out.vmdk" "$HDDFILE"
