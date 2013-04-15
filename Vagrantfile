@@ -16,21 +16,8 @@ Vagrant.configure("2") do |config|
   end
 
   $script = <<SCRIPT
-  set -e
-  export DEBIAN_FRONTEND=noninteractive
   echo I am provisioning...
   date > /etc/vagrant_provisioned_at
-  cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
-  # Enabling mirrors
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse > /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse >> /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restricted universe multiverse >> /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse >> /etc/apt/sources.list
-  echo >> /etc/apt/sources.list
-  cat < /etc/apt/sources.list.old.pylab >> /etc/apt/sources.list
-  # Full update
-  aptitude -y update
-  aptitude -y full-upgrade
 SCRIPT
   config.vm.provision :shell, :inline => $script
 end
