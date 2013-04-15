@@ -31,23 +31,6 @@ Vagrant.configure("2") do |config|
   # Full update
   aptitude -y update
   aptitude -y full-upgrade
-  aptitude -y install build-essential
-  aptitude -y install python3
-  aptitude -y install python3-dev
-  aptitude -y install curl
-  aptitude -y install cmake
-  aptitude -y install libzmq-dev
-  aptitude -y install libqt4-dev
-  aptitude -y install libqt4-opengl-dev
-  # Clean up
-  aptitude -y clean
-  aptitude -y autoclean
-  # Install pip
-  curl http://python-distribute.org/distribute_setup.py | python3
-  curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3
-  # Python tools
-  pip-3.2 install pyside
-  # Pip will be cleaned by reboot since it works in /tmp
 SCRIPT
   config.vm.provision :shell, :inline => $script
 end
