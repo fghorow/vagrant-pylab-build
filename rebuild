@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-set -e
+vagrant plugin install vagrant-vbguest
+#set -e
 vagrant destroy
-vagrant up
+vagrant up --no-provision
 vagrant ssh <<SCRIPT
   sudo bash <<LEVEL2SCRIPT
   set -e
@@ -17,11 +18,12 @@ vagrant ssh <<SCRIPT
   cat < /etc/apt/sources.list.old.pylab >> /etc/apt/sources.list
   # Full update
   aptitude -y update
-  aptitude -y full-upgrade
+  aptitude -y safe-upgrade
 LEVEL2SCRIPT
 SCRIPT
 vagrant halt
 vagrant up --no-provision
+vagrant vbguest
 vagrant ssh <<SCRIPT
   sudo bash <<LEVEL2SCRIPT
   set -e
@@ -60,4 +62,12 @@ HDDFILE=`VBoxManage showvminfo python3pylab --machinereadable | \
      grep "SATA Controller-" | grep -v -- "-ImageUUID-" | cut -d = -f 2 | tr -d \"`
 VBoxManage clonehd "$HDDID" ./out.vmdk
 VBoxManage internalcommands sethduuid ./out.vmdk "$HDDID"
+echo Old size
+ls -lh "$HDDFILE"
 mv ./out.vmdk "$HDDFILE"
+echo New size
+ls -lh "$HDDFILE"
+echo Done! Ctrl-C here for custom actions.
+echo Otherwise I'll start the VM
+sleep 30
+vagrant up
