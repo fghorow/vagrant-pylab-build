@@ -34,7 +34,9 @@ vagrant ssh <<SCRIPT
   aptitude -y install python3
   aptitude -y install python3-dev
   aptitude -y install curl
-  aptitude -y install libzmq-dev
+  # Packages are complaining about old zmq
+  # Let pyzmq use its own zmq
+  # aptitude -y install libzmq-dev
   aptitude -y install libsox-dev sox
   aptitude -y install python3-pyside
   aptitude -y install python3-numpy
