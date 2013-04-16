@@ -1,28 +1,28 @@
 #!/usr/bin/env bash
 
 # Install vbguest plugin if needed
-#vagrant plugin install vagrant-vbguest
-#set -e
-#vagrant destroy
-#vagrant up --no-provision
-#vagrant ssh <<SCRIPT
-#  sudo bash <<LEVEL2SCRIPT
-#  set -e
-#  export DEBIAN_FRONTEND=noninteractive
-#  cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
-#  # Enabling mirrors
-#  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse > /etc/apt/sources.list
-#  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse >> /etc/apt/sources.list
-#  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restricted universe multiverse >> /etc/apt/sources.list
-#  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse >> /etc/apt/sources.list
-#  echo >> /etc/apt/sources.list
-#  cat < /etc/apt/sources.list.old.pylab >> /etc/apt/sources.list
-#  # Safe update
-#  aptitude -y update
-#  aptitude -y safe-upgrade
-#LEVEL2SCRIPT
-#SCRIPT
-#vagrant halt
+vagrant plugin install vagrant-vbguest
+set -e
+vagrant destroy
+vagrant up --no-provision
+vagrant ssh <<SCRIPT
+  sudo bash <<LEVEL2SCRIPT
+  set -e
+  export DEBIAN_FRONTEND=noninteractive
+  cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
+  # Enabling mirrors
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse > /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse >> /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restricted universe multiverse >> /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse >> /etc/apt/sources.list
+  echo >> /etc/apt/sources.list
+  cat < /etc/apt/sources.list.old.pylab >> /etc/apt/sources.list
+  # Safe update
+  aptitude -y update
+  aptitude -y safe-upgrade
+LEVEL2SCRIPT
+SCRIPT
+vagrant halt
 vagrant up --no-provision
 vagrant vbguest
 vagrant ssh <<SCRIPT
@@ -83,6 +83,6 @@ mv ./out.vmdk "$HDDFILE"
 echo New size
 ls -lh "$HDDFILE"
 echo Done! Ctrl-C here for custom actions.
-echo Otherwise I'll start the VM
+echo Otherwise I\'ll start the VM
 sleep 30
 vagrant up
