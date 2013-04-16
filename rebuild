@@ -39,6 +39,8 @@ vagrant ssh <<SCRIPT
   aptitude -y install python3-pyside
   aptitude -y install python3-numpy
   aptitude -y install python3-scipy
+  # Matplotlib build depends (matplot lib not available for python3 on ubuntu)
+  aptitude -y install libpng-dev libfreetype-dev libgtk2-dev librsvg2-dev
   # Clean up
   aptitude -y clean
   aptitude -y autoclean
@@ -46,6 +48,7 @@ vagrant ssh <<SCRIPT
   curl http://python-distribute.org/distribute_setup.py | python3
   curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3
   # Python tools
+  pip-3.2 install python-dateutil
   pip-3.2 install ipython
   pip-3.2 install tornado
   pip-3.2 install pyzmq
