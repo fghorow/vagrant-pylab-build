@@ -84,10 +84,10 @@ HDDFILE=`VBoxManage showvminfo python3pylab --machinereadable | \
 VBoxManage clonehd "$HDDID" ./out.vmdk
 VBoxManage internalcommands sethduuid ./out.vmdk "$HDDID"
 echo Old size
-ls -lh "$HDDFILE"
+du -h "$HDDFILE"
 mv ./out.vmdk "$HDDFILE"
 echo New size
-ls -lh "$HDDFILE"
+du -h "$HDDFILE"
 echo Done! Ctrl-C here for custom actions.
 echo Otherwise I\'ll start the VM
 sleep 30

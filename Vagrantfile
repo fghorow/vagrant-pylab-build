@@ -18,8 +18,10 @@ Vagrant.configure("2") do |config|
   $script = <<SCRIPT
   echo I am provisioning...
   date > /etc/vagrant_provisioned_at
-  ipython3 notebook --no-browser &
+  su vagrant <<LEVEL2SCRIPT
+  ipython3 notebook --ip="*" --no-browser > /dev/null 2> /dev/null &
   disown
+LEVEL2SCRIPT
 SCRIPT
   config.vm.provision :shell, :inline => $script
 end
