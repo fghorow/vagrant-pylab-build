@@ -42,6 +42,8 @@ vagrant ssh <<SCRIPT
   aptitude -y install python3-numpy
   aptitude -y install python3-scipy
   aptitude -y install git
+  aptitude -y install clang
+  aptitude -y install vim vim-python
   # Matplotlib build depends (matplotlib not available for python3 on ubuntu)
   aptitude -y install libpng-dev libfreetype-dev libgtk2-dev librsvg2-dev
   aptitude -y install texlive dvipng
