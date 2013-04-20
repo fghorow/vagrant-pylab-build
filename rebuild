@@ -69,19 +69,14 @@ vagrant ssh <<SCRIPT
   pip-3.2 install freeze
   pip-3.2 install -e git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsyo
   pip-3.2 install pandas
+  pip-3.2 install cython
+
   # Pip will be cleaned by reboot since it works in /tmp
   rm distribute-0.6.36.tar.gz
   rm -rf src
   rm postinstall.sh
   addgroup vagrant audio
 LEVEL2SCRIPT
-SCRIPT
-vagrant halt
-vagrant up --no-provision
-vagrant ssh <<SCRIPT
-  dd if=/dev/zero of=/tmp/zero.pylab bs=2048
-  sync
-  rm /tmp/zero.pylab
 SCRIPT
 vagrant halt
 vagrant up --no-provision
