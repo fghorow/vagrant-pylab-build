@@ -48,6 +48,8 @@ vagrant ssh <<SCRIPT
   aptitude -y install libpng-dev libfreetype-dev libgtk2-dev librsvg2-dev
   aptitude -y install texlive dvipng
   # Clean up
+  dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs aptitude -y purge
+  apt-get autoremove
   aptitude -y clean
   aptitude -y autoclean
   # Install pip
@@ -72,6 +74,13 @@ vagrant ssh <<SCRIPT
   rm postinstall.sh
   addgroup vagrant audio
 LEVEL2SCRIPT
+SCRIPT
+vagrant halt
+vagrant up --no-provision
+vagrant ssh <<SCRIPT
+  dd if=/dev/zero of=/tmp/zero.pylab bs=2048
+  sync
+  rm /tmp/zero.pylab
 SCRIPT
 vagrant halt
 vagrant up --no-provision
