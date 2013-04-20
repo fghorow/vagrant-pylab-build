@@ -15,10 +15,15 @@ Vagrant.configure("2") do |config|
     v.name = "python3pylab"
   end
 
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--memory", 1024]
+  end
+
   $script = <<SCRIPT
   echo I am provisioning...
   date > /etc/vagrant_provisioned_at
   su vagrant <<LEVEL2SCRIPT
+  cd /vagrant
   ipython3 notebook --ip="*" --no-browser > /dev/null 2> /dev/null &
   disown
 LEVEL2SCRIPT
