@@ -54,6 +54,7 @@ for d in "${dirs[@]}" ; do
 		 -DPYTHON3_EXECUTABLE=/usr/bin/python3.3  \
 		 -DPYTHON3_INCLUDE_DIR=/usr/include/python3.3 \
 		 -DPYTHON3_LIBRARY=/usr/lib/python3.3 \
+		 -DSITE_PACKAGE=/usr/local/lib/python3.3/site-packages \
                  $PYSIDE_BS_CMAKE_FLAGS \
             && make -j4 && make install || exit 1
     ) || exit 1

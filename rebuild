@@ -3,10 +3,9 @@
 # Sorry for the sleeps virtualbox or vagrant started to misbehave
 
 # Install vbguest plugin if needed
-vagrant plugin install vagrant-vbguest
 set -e
 vagrant destroy
-sleep 10
+vagrant plugin install vagrant-vbguest
 vagrant up --no-provision
 vagrant ssh <<SCRIPT
   sudo bash <<LEVEL2SCRIPT
@@ -43,9 +42,8 @@ vagrant ssh <<SCRIPT
   # Packages are complaining about old zmq
   # Let pyzmq use its own zmq
   # aptitude -y install libzmq-dev
-  aptitude -y install libsox-dev sox
-  aptitude -y install git
-  aptitude -y install clang
+  aptitude -y install libsox-dev sox gfortran libopenblas-dev liblapack-dev
+  aptitude -y install git clang
   aptitude -y install vim vim-python
   # Matplotlib build depends (matplotlib not available for python3 on ubuntu)
   aptitude -y install libpng-dev libfreetype-dev libgtk2-dev librsvg2-dev
