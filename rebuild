@@ -54,13 +54,14 @@ vagrant ssh <<SCRIPT
   curl http://python-distribute.org/distribute_setup.py | python3.3
   curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3.3
   # PySide
-  aptitude -y install make libqt4-dev libxml2-dev libxslt1-dev qtmobility-dev
+  aptitude -y install cmake libqt4-dev libxml2-dev libxslt1-dev qtmobility-dev
   git clone https://github.com/PySide/BuildScripts.git
   cd BuildScripts
   git submodule init
   git submodule update
   export PYSIDE_BUILDSCRIPTS_USE_PYTHON3=yes
-  ./build_and_install
+  cp /vagrant/build_pyside .
+  ./build_pyside
   cd \$HOME
   rm -rf BuildScripts
   # Clean up
