@@ -37,33 +37,43 @@ vagrant ssh <<SCRIPT
   export DEBIAN_FRONTEND=noninteractive
   apt-get -y --reinstall install aptitude
   aptitude -y install build-essential
-  aptitude -y install python3.3
-  aptitude -y install python3.3-dev
+  aptitude -o Aptitude::Cmdline::ignore-trust-violations=true -y install python3.3
+  aptitude -o Aptitude::Cmdline::ignore-trust-violations=true -y install python3.3-dev
   aptitude -y install curl
   # Packages are complaining about old zmq
   # Let pyzmq use its own zmq
   # aptitude -y install libzmq-dev
   aptitude -y install libsox-dev sox
-  # Ignore pyside for the moment (its a bitch)
-  # aptitude -y install python3-pyside
   aptitude -y install git
   aptitude -y install clang
   aptitude -y install vim vim-python
   # Matplotlib build depends (matplotlib not available for python3 on ubuntu)
   aptitude -y install libpng-dev libfreetype-dev libgtk2-dev librsvg2-dev
   aptitude -y install texlive dvipng
-  # Clean up
-  aptitude -y purge linux-headers-3.3.0-23-generic linux-headers-3.3.0-23
-  aptitude -y purge linux-image-3.3.0-23-generic
-  apt-get autoremove
-  aptitude -y clean
-  aptitude -y autoclean
   # Install pip
   curl http://python-distribute.org/distribute_setup.py | python3.3
   curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3.3
+  # PySide
+  aptitude -y install make libqt4-dev libxml2-dev libxslt1-dev qtmobility-dev
+  git clone https://github.com/PySide/BuildScripts.git
+  cd BuildScripts
+  git submodule init
+  git submodule update
+  export PYSIDE_BUILDSCRIPTS_USE_PYTHON3=yes
+  ./build_and_install
+  cd \$HOME
+  rm -rf BuildScripts
+  # Clean up
+  aptitude -y purge linux-headers-3.2.0-23-generic linux-headers-3.2.0-23
+  aptitude -y purge linux-image-3.2.0-23-generic
+  apt-get autoremove
+  aptitude -y clean
+  aptitude -y autoclean
   # Python tools
   pip-3.3 install pytz
   pip-3.3 install six
+  pip-3.3 install numpy
+  pip-3.3 install scipy
   pip-3.3 install python-dateutil
   pip-3.3 install ipython
   pip-3.3 install tornado
@@ -72,14 +82,12 @@ vagrant ssh <<SCRIPT
   pip-3.3 install matplotlib
   pip-3.3 install pysox
   pip-3.3 install freeze
-  pip-3.3 install numpy
-  pip-3.3 install scipy
   pip-3.3 install -e git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsyo
   pip-3.3 install pandas
   pip-3.3 install cython
 
   # Pip will be cleaned by reboot since it works in /tmp
-  rm distribute-0.6.36.tar.gz
+  rm distribute-*.tar.gz
   rm -rf src
   rm postinstall.sh
   addgroup vagrant audio
