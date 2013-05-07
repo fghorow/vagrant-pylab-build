@@ -90,6 +90,13 @@ vagrant ssh <<SCRIPT
   rm -rf src
   rm postinstall.sh
   addgroup vagrant audio
+  cd /
+  mkdir defrag
+  tar c usr | tar x -C defrag
+  mv /usr/ /usr.del
+  mv /defrag/usr/ /
+  rm -rf /usr.del
+  rm -r /defrag
 LEVEL2SCRIPT
 SCRIPT
 vagrant halt

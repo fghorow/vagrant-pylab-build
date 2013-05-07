@@ -14,10 +14,10 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "python3pylab"
     v.customize ["modifyvm", :id, "--memory", 1024]
-	v.customize ["modifyvm", :id, "--cpus",
-	    %x(awk "/^processor/ {++n} END {print n}" /proc/cpuinfo 2> /dev/null || \
-		sh -c 'sysctl hw.logicalcpu 2> /dev/null || echo ": 2"' | \
-		awk \'{print \$2}\').chomp ]
+	# v.customize ["modifyvm", :id, "--cpus",
+	#     %x(awk "/^processor/ {++n} END {print n}" /proc/cpuinfo 2> /dev/null || \
+	# 	sh -c 'sysctl hw.logicalcpu 2> /dev/null || echo ": 2"' | \
+	# 	awk \'{print \$2}\').chomp ]
   end
 
   $script = <<SCRIPT
