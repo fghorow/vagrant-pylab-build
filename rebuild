@@ -43,7 +43,7 @@ vagrant ssh <<SCRIPT
   # Let pyzmq use its own zmq
   # aptitude -y install libzmq-dev
   aptitude -y install libsox-dev sox gfortran libopenblas-dev liblapack-dev
-  aptitude -y install git clang libclang1 exuberant-ctags
+  aptitude -y install git clang libclang1 exuberant-ctags tmux libclang-dev
   aptitude -y install vim vim-python
   # Matplotlib build depends (matplotlib not available for python3 on ubuntu)
   aptitude -y install libpng-dev libfreetype-dev libgtk2-dev librsvg2-dev
