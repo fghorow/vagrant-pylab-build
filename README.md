@@ -4,7 +4,7 @@ vagrant-pylab-build
 Build and shrink a pylab environment for vagrant
 
 * See https://github.com/ganwell/vagrant-pylab-build/blob/master/rebuild for packages installed.
-* Use ./rebuild to build box.
+* Use ./rebuild to build the box.
 
 Download
 --------
