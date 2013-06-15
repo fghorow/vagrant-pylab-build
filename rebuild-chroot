@@ -30,5 +30,7 @@ chroot pylab3chroot bash <<SCRIPT
   aptitude -y update
   aptitude -y safe-upgrade
 SCRIPT
+mkdir -p pylab3chroot/vagrant
+cp build_pyside pylab3chroot/vagrant
 chroot pylab3chroot bash < rebuild-packages
 

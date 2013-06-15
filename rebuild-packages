@@ -13,13 +13,12 @@
   aptitude -y install git clang libclang1 exuberant-ctags tmux libclang-dev
   aptitude -y install vim vim-python
   # Matplotlib build depends (matplotlib not available for python3 on ubuntu)
-  aptitude -y install libpng-dev libfreetype6-dev libgtk2-dev librsvg2-dev
+  aptitude -y install libpng-dev libfreetype6-dev libgtk2.0-dev librsvg2-dev
   aptitude -y install texlive dvipng
   # Install pip
   curl http://python-distribute.org/distribute_setup.py | python3.3
   curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3.3
   # PySide
-  mkdir -p /vagrant
   cd /vagrant
   aptitude -y install cmake libqt4-dev libxml2-dev libxslt1-dev qtmobility-dev
   git clone https://github.com/PySide/BuildScripts.git
