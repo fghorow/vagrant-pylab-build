@@ -6,22 +6,24 @@ umount pylab3chroot/proc
 umount pylab3chroot/sys
 rm -rf --one-file-system pylab3chroot
 set -e
-debootstrap --variant=buildd --arch amd64 precise pylab3chroot `curl -s http://mirrors.ubuntu.com/mirrors.txt | head -n 1`
+UMIRROR=`curl -s http://mirrors.ubuntu.com/mirrors.txt | head -n 1`
+debootstrap --variant=buildd --arch amd64 precise pylab3chroot $UMIRROR
 mount --bind /dev pylab3chroot/dev
 mount --bind /proc pylab3chroot/proc
 mount --bind /sys pylab3chroot/sys
 mount --bind /dev/pts pylab3chroot/dev/pts
-cp sources.list pylab3chroot/etc/apt/
+
+cat sources.list.mirror | sed "s,XMIRROR,$UMIRROR,g" > pylab3chroot/etc/apt/sources.list
+apt-get -y update
 chroot pylab3chroot bash <<SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
   # Safe update
   apt-get -y install sudo locales aptitude
   locale-gen en_US.utf8
-  aptitude -y update
   aptitude -y safe-upgrade
 SCRIPT
 mkdir -p pylab3chroot/vagrant
 cp build_pyside pylab3chroot/vagrant
 chroot pylab3chroot bash < rebuild-packages
-
+cp sources.list pylab3chroot/etc/apt/
