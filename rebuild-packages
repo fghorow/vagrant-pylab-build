@@ -1,36 +1,3 @@
-#!/usr/bin/env bash
-
-# Sorry for the sleeps virtualbox or vagrant started to misbehave
-
-# Install vbguest plugin if needed
-set -e
-vagrant destroy
-vagrant plugin install vagrant-vbguest
-vagrant up --no-provision
-vagrant ssh <<SCRIPT
-  sudo bash <<LEVEL2SCRIPT
-  set -e
-  export DEBIAN_FRONTEND=noninteractive
-  cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
-  # Enabling mirrors
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse > /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse >> /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restricted universe multiverse >> /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse >> /etc/apt/sources.list
-  echo >> /etc/apt/sources.list
-  echo deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu precise main >> /etc/apt/sources.list
-  echo >> /etc/apt/sources.list
-  cat < /etc/apt/sources.list.old.pylab >> /etc/apt/sources.list
-  # Safe update
-  aptitude -y update
-  aptitude -y safe-upgrade
-LEVEL2SCRIPT
-SCRIPT
-vagrant halt
-sleep 10
-vagrant up --no-provision
-vagrant vbguest
-vagrant ssh <<SCRIPT
   sudo bash <<LEVEL2SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
@@ -94,30 +61,4 @@ vagrant ssh <<SCRIPT
   addgroup vagrant audio
   e4defrag /
 LEVEL2SCRIPT
-SCRIPT
-vagrant halt
-sleep 10
-vagrant up --no-provision
-vagrant ssh <<SCRIPT
-  dd if=/dev/zero of=/tmp/zero.pylab bs=2048
-  sync
-  rm /tmp/zero.pylab
-  sync
-SCRIPT
-vagrant halt
-sleep 10
-HDDID=`VBoxManage showvminfo python3pylab --machinereadable | \
-     grep "SATA Controller-ImageUUID-" | cut -d = -f 2 | tr -d \"`
-HDDFILE=`VBoxManage showvminfo python3pylab --machinereadable | \
-     grep "SATA Controller-" | grep -v -- "-ImageUUID-" | cut -d = -f 2 | tr -d \"`
-VBoxManage clonehd "$HDDID" ./out.vmdk
-VBoxManage internalcommands sethduuid ./out.vmdk "$HDDID"
-echo Old size
-du -h "$HDDFILE"
-mv ./out.vmdk "$HDDFILE"
-echo New size
-du -h "$HDDFILE"
-echo Done! Ctrl-C here for custom actions.
-echo Otherwise I\'ll start the VM
-sleep 30
-vagrant up
+
