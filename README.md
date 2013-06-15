@@ -20,6 +20,8 @@ vagrant init pylab
 vagrant up
 ````
 
+*YOU NEED TO FIREWALL VBoxHeadless or the notebook port *
+
 Browse http://localhost:8888 (or port displayed)
 
 chroot-pylab-build
