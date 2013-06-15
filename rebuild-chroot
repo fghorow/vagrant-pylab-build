@@ -14,11 +14,11 @@ mount --bind /sys pylab3chroot/sys
 mount --bind /dev/pts pylab3chroot/dev/pts
 
 cat sources.list.mirror | sed "s,XMIRROR,$UMIRROR,g" > pylab3chroot/etc/apt/sources.list
-apt-get -y update
 chroot pylab3chroot bash <<SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
   # Safe update
+  apt-get -y update
   apt-get -y install sudo locales aptitude
   locale-gen en_US.utf8
   aptitude -y safe-upgrade
@@ -27,3 +27,4 @@ mkdir -p pylab3chroot/vagrant
 cp build_pyside pylab3chroot/vagrant
 chroot pylab3chroot bash < rebuild-packages
 cp sources.list pylab3chroot/etc/apt/
+chroot pylab3chroot aptitude -y update
