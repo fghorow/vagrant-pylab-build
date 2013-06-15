@@ -11,7 +11,7 @@ mount --bind /dev pylab3chroot/dev
 mount --bind /proc pylab3chroot/proc
 mount --bind /sys pylab3chroot/sys
 mount --bind /dev/pts pylab3chroot/dev/pts
-root pylab3chroot bash <<SCRIPT
+chroot pylab3chroot bash <<SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
   cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
