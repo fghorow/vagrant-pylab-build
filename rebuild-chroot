@@ -11,19 +11,10 @@ mount --bind /dev pylab3chroot/dev
 mount --bind /proc pylab3chroot/proc
 mount --bind /sys pylab3chroot/sys
 mount --bind /dev/pts pylab3chroot/dev/pts
+cp sources.list pylab3chroot/etc/apt/
 chroot pylab3chroot bash <<SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
-  cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
-  # Enabling mirrors
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse > /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse >> /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restricted universe multiverse >> /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse >> /etc/apt/sources.list
-  echo >> /etc/apt/sources.list
-  echo deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu precise main >> /etc/apt/sources.list
-  echo >> /etc/apt/sources.list
-  cat < /etc/apt/sources.list.old.pylab >> /etc/apt/sources.list
   # Safe update
   apt-get -y install sudo locales aptitude
   locale-gen en_US.utf8
