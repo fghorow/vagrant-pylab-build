@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-umount pylab3chroot/dev/pts
-umount pylab3chroot/dev
-umount pylab3chroot/proc
-umount pylab3chroot/sys
 rm -rf --one-file-system pylab3chroot
 set -e
 UMIRROR=`curl -s http://mirrors.ubuntu.com/mirrors.txt | head -n 1`

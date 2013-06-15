@@ -30,7 +30,7 @@
   ./build_pyside
   cd /vagrant
   rm -rf BuildScripts
-  cd \$HOME
+  cd \\\$HOME
   # Clean up
   aptitude -y purge linux-headers-3.2.0-23-generic linux-headers-3.2.0-23
   aptitude -y purge linux-image-3.2.0-23-generic
