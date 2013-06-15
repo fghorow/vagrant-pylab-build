@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+sudo tar --one-file-system -c pylab3chroot > pylab3chroot.tar
+xz -9 pylab3chroot.tar
