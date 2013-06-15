@@ -19,7 +19,6 @@ Vagrant.configure("2") do |config|
   $script = <<SCRIPT
   echo I am provisioning...
   date > /etc/vagrant_provisioned_at
-LEVEL2SCRIPT
 SCRIPT
   config.vm.provision :shell, :inline => $script
 end
