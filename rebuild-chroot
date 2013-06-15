@@ -5,5 +5,8 @@ set -e
 rm -rf pylab3chroot
 debootstrap --variant=buildd --arch amd64 precise pylab3chroot `curl -s http://mirrors.ubuntu.com/mirrors.txt | head -n 1`
 chroot pylab3chroot apt-get -y install sudo locales aptitude
+chroot pylab3chroot locale-gen en_US.utf8
+chroot pylab3chroot aptitude -y update
+chroot pylab3chroot aptitude -y safe-upgrade
 chroot pylab3chroot bash < rebuild-packages
 
