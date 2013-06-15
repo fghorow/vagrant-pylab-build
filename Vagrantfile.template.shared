@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider :virtualbox do |vb|
-    v.name = "python3pylab.shared"
+    vb.name = "python3pylab.shared"
   #   # Don't boot with headless mode
   #   vb.gui = true
   #
