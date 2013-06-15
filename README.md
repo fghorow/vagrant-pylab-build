@@ -30,8 +30,8 @@ chroot-pylab-build
 If you want to install pylab on a server and skip virtual-box you can use the
 chroot environment
 
-* Its based on debootstrap so you need a debian or ubuntu system
-* Use sudo ./rebuild-chroot to build the pylab-chroot
+* Its based on debootstrap so you need a debian or ubuntu system.
+* Use sudo ./rebuild-chroot to build the pylab-chroot.
 
 Download
 --------
