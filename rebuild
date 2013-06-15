@@ -92,6 +92,7 @@ vagrant ssh <<SCRIPT
   rm -rf src
   rm postinstall.sh
   addgroup vagrant audio
+  e4defrag /
 LEVEL2SCRIPT
 SCRIPT
 vagrant halt
