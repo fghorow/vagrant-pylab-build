@@ -4,16 +4,31 @@ umount pylab3chroot/dev/pts
 umount pylab3chroot/dev
 umount pylab3chroot/proc
 umount pylab3chroot/sys
+rm -rf --one-file-system pylab3chroot
 set -e
-rm -rf pylab3chroot
 debootstrap --variant=buildd --arch amd64 precise pylab3chroot `curl -s http://mirrors.ubuntu.com/mirrors.txt | head -n 1`
 mount --bind /dev pylab3chroot/dev
 mount --bind /proc pylab3chroot/proc
 mount --bind /sys pylab3chroot/sys
 mount --bind /dev/pts pylab3chroot/dev/pts
-chroot pylab3chroot apt-get -y install sudo locales aptitude
-chroot pylab3chroot locale-gen en_US.utf8
-chroot pylab3chroot aptitude -y update
-chroot pylab3chroot aptitude -y safe-upgrade
+vagrant ssh <<SCRIPT
+  set -e
+  export DEBIAN_FRONTEND=noninteractive
+  cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
+  # Enabling mirrors
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse > /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse >> /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restricted universe multiverse >> /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse >> /etc/apt/sources.list
+  echo >> /etc/apt/sources.list
+  echo deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu precise main >> /etc/apt/sources.list
+  echo >> /etc/apt/sources.list
+  cat < /etc/apt/sources.list.old.pylab >> /etc/apt/sources.list
+  # Safe update
+  apt-get -y install sudo locales aptitude
+  locale-gen en_US.utf8
+  aptitude -y update
+  aptitude -y safe-upgrade
+SCRIPT
 chroot pylab3chroot bash < rebuild-packages
 
