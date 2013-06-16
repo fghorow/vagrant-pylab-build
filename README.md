@@ -32,7 +32,7 @@ vagrant up
 **YOU NEED TO FIREWALL VBoxHeadless or the notebook and ssh port.** (Unfortunately
 thats a inherent major drawback of public vagrant boxes.)
 
--> The problem will be fix with: https://github.com/Aigeruth/vagrant/commit/2979b0ad64593b1922d47e0db1a266c2aa026dfa
+-> The problem will be fixed with: https://github.com/Aigeruth/vagrant/commit/2979b0ad64593b1922d47e0db1a266c2aa026dfa
 I will adapt this as soon as possible!
 
 Browse http://localhost:8888 (or port displayed)
