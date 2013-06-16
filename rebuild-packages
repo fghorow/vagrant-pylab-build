@@ -2,7 +2,7 @@
   set -e
   export DEBIAN_FRONTEND=noninteractive
   apt-get -y --reinstall install aptitude
-  aptitude -y install build-essential
+  aptitude -y install ubuntu-minimal ubuntu-standard linux-headers build-essential
   aptitude -o Aptitude::Cmdline::ignore-trust-violations=true -y install python3.3
   aptitude -o Aptitude::Cmdline::ignore-trust-violations=true -y install python3.3-dev
   aptitude -y install curl
