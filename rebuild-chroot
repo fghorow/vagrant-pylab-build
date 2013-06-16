@@ -4,11 +4,10 @@ rm -rf --one-file-system pylab3chroot
 set -e
 UMIRROR=`curl -s http://mirrors.ubuntu.com/mirrors.txt | head -n 1`
 debootstrap --variant=buildd --arch amd64 precise pylab3chroot $UMIRROR
-mount --bind /dev pylab3chroot/dev
-mount --bind /proc pylab3chroot/proc
-mount --bind /sys pylab3chroot/sys
-mount --bind /dev/pts pylab3chroot/dev/pts
-
+mount --rbind /dev pylab3chroot/dev
+mount --rbind /proc pylab3chroot/proc
+mount --rbind /sys pylab3chroot/sys
+mount --rbind /run pylab3chroot/run
 cat sources.list.mirror | sed "s,XMIRROR,$UMIRROR,g" > pylab3chroot/etc/apt/sources.list
 chroot pylab3chroot su <<SCRIPT
   set -e
