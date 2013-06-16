@@ -8,6 +8,7 @@ mount --rbind /dev pylab3chroot/dev
 mount --rbind /proc pylab3chroot/proc
 mount --rbind /sys pylab3chroot/sys
 mount --rbind /run pylab3chroot/run
+mount --rbind /tmp pylab3chroot/tmp
 cat sources.list.mirror | sed "s,XMIRROR,$UMIRROR,g" > pylab3chroot/etc/apt/sources.list
 chroot pylab3chroot su <<SCRIPT
   set -e
