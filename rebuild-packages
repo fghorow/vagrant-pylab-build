@@ -56,9 +56,8 @@
   pip-3.3 install cython
 
   # Pip will be cleaned by reboot since it works in /tmp
-  rm distribute-*.tar.gz
+  rm -rf distribute-*.tar.gz
   rm -rf src
   rm -rf postinstall.sh
-  e4defrag /
 LEVEL2SCRIPT
 
