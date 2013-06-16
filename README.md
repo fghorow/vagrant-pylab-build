@@ -1,5 +1,10 @@
+Well defined python 3 environment
+=================================
+
+**...for your server, your open source project and your collaborator.**
+
 vagrant-pylab-build
-===================
+==================
 
 Build and shrink a pylab environment for vagrant
 
