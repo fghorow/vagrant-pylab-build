@@ -62,6 +62,7 @@ sudo ./start-chroot
 
 * or at @reboot in roots crontab: 
 ````bash
+
 @reboot HOME=/home/ganwell USER=ganwell /home/ganwell/prj/vagrant-pylab-build/start-chroot
 ````
 
