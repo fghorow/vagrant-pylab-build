@@ -56,7 +56,8 @@
   pip-3.3 install pandas
   pip-3.3 install cython
 
-  # Pip will be cleaned by reboot since it works in /tmp
+  # The chroot will not clean its /tmp on reboot
+  rm -rf /tmp/*
   rm -rf distribute-*.tar.gz
   rm -rf src
   rm -rf postinstall.sh
