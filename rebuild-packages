@@ -54,6 +54,10 @@
   pip-3.3 install numexpr
   pip-3.3 install pandas
   pip-3.3 install cython
+
+  pip-3.3 install -e git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
+  # Seems its a bug in latest distribute: first install the dependencies
+  # then install again, why?
   pip-3.3 install -e git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
 
   # The chroot will not clean its /tmp on reboot
