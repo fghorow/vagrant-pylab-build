@@ -52,3 +52,15 @@ Download
 --------
 
 https://dl.dropboxusercontent.com/u/170011615/pylab3chroot.tar.xz
+
+start-chroot
+------------
+
+* Either start the chroot from a user: ````bash
+sudo ./start-chroot
+````
+* or at @reboot in roots crontab: 
+````bash
+@reboot HOME=/home/ganwell USER=ganwell /home/ganwell/prj/vagrant-pylab-build/start-chroot
+````
+
