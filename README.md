@@ -29,7 +29,8 @@ vagrant init pylab
 vagrant up
 ````
 
-**YOU NEED TO FIREWALL VBoxHeadless or the notebook port.**
+**YOU NEED TO FIREWALL VBoxHeadless or the notebook and ssh port.** (Unfortunately
+thats a inherent major drawback of public vagrant boxes.)
 
 Browse http://localhost:8888 (or port displayed)
 
