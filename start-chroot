@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+PATH="$PATH:/usr/sbin"
+MAIN_DIR="$( dirname $(cd ${0%/*} && echo $PWD/${0##*/}) )"
+CHROOT_HOME="$MAIN_DIR/pylab3chroot/$HOME"
+cp /etc/passwd "$MAIN_DIR/pylab3chroot/etc/"
+cp /etc/group "$MAIN_DIR/pylab3chroot/etc/"
+touch "$HOME/.chroothome"
+if [ ! -f "$CHROOT_HOME/.chroothome" ]; then
+	echo Bind home
+	mkdir -p "$CHROOT_HOME"
+	mount --rbind "$HOME" "$CHROOT_HOME"
+	mount --rbind /dev "$MAIN_DIR/pylab3chroot/dev"
+	mount --rbind /proc "$MAIN_DIR/pylab3chroot/proc"
+	mount --rbind /sys "$MAIN_DIR/pylab3chroot/sys"
+	mount --rbind /run "$MAIN_DIR/pylab3chroot/run"
+fi
+chroot --userspec=ganwell "$MAIN_DIR/pylab3chroot" <<SCRIPT
+cd
+mkdir -p notebooks
+cd notebooks
+ipython3 notebook --no-browser
+SCRIPT
+
