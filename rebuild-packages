@@ -1,5 +1,6 @@
   sudo bash <<LEVEL2SCRIPT
   set -e
+  cd \$HOME
   export DEBIAN_FRONTEND=noninteractive
   apt-get -y --reinstall install aptitude
   aptitude -y install build-essential
@@ -57,8 +58,7 @@
   # Pip will be cleaned by reboot since it works in /tmp
   rm distribute-*.tar.gz
   rm -rf src
-  rm postinstall.sh
-  addgroup vagrant audio
+  rm -rf postinstall.sh
   e4defrag /
 LEVEL2SCRIPT
 
