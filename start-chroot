@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-PATH="$PATH:/usr/sbin"
+# Typical cron entry
+# @reboot HOME=/home/ganwell USER=ganwell /home/ganwell/prj/vagrant-pylab-build/start-chroot
+# PATH is set for start from cron
+PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 MAIN_DIR="$( dirname $(cd ${0%/*} && echo $PWD/${0##*/}) )"
 CHROOT_HOME="$MAIN_DIR/pylab3chroot/$HOME"
 cp /etc/passwd "$MAIN_DIR/pylab3chroot/etc/"
