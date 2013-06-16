@@ -10,7 +10,7 @@ mount --bind /sys pylab3chroot/sys
 mount --bind /dev/pts pylab3chroot/dev/pts
 
 cat sources.list.mirror | sed "s,XMIRROR,$UMIRROR,g" > pylab3chroot/etc/apt/sources.list
-chroot pylab3chroot bash <<SCRIPT
+chroot pylab3chroot su <<SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
   # Safe update
@@ -21,7 +21,6 @@ chroot pylab3chroot bash <<SCRIPT
 SCRIPT
 mkdir -p pylab3chroot/vagrant
 cp build_pyside pylab3chroot/vagrant
-HOME=/root
-chroot pylab3chroot bash < rebuild-packages
+chroot pylab3chroot su < rebuild-packages
 cp sources.list pylab3chroot/etc/apt/
 chroot pylab3chroot aptitude -y update
