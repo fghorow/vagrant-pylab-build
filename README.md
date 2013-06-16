@@ -3,6 +3,10 @@ Well defined python 3 environment
 
 **...for your server, your open source project and your collaborator.**
 
+Define your environement (in rebuild-packages) and build it for vagrant and as ubuntu-chroot. 
+Deploy them on your servers, create unit-test scripts that will never fail because of missing
+dependencies.
+
 vagrant-pylab-build
 ==================
 
