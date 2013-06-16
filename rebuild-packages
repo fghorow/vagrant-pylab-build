@@ -52,6 +52,7 @@
   pip-3.3 install pysox
   pip-3.3 install freeze
   pip-3.3 install -e git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
+  pip-3.3 install numexpr
   pip-3.3 install pandas
   pip-3.3 install cython
 
