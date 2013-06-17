@@ -56,8 +56,7 @@
   pip-3.3 install cython
   pip-3.3 install git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
 
-  # The chroot will not clean its /tmp on reboot
-  rm -rf /tmp/*
+  # pip will be cleaned because it works in temp
   rm -rf distribute-*.tar.gz
   rm -rf src
   rm -rf postinstall.sh
