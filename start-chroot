@@ -16,7 +16,6 @@ if [ ! -f "$CHROOT_HOME/.chroothome" ]; then
 	mount --rbind /proc "$MAIN_DIR/pylab3chroot/proc"
 	mount --rbind /sys "$MAIN_DIR/pylab3chroot/sys"
 	mount --rbind /run "$MAIN_DIR/pylab3chroot/run"
-	rm -rf "$MAIN_DIR/pylab3chroot/tmp/"*
 	mount --rbind /tmp "$MAIN_DIR/pylab3chroot/tmp"
 fi
 chroot --userspec=ganwell "$MAIN_DIR/pylab3chroot" <<SCRIPT
