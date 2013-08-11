@@ -20,8 +20,6 @@ chroot python3pylab su <<SCRIPT
   aptitude -y safe-upgrade
   ldconfig
 SCRIPT
-mkdir -p python3pylab/vagrant
-cp build_pyside python3pylab/vagrant
 chroot python3pylab su < rebuild-packages
 chroot python3pylab aptitude -y update
 chroot python3pylab ldconfig
