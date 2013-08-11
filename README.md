@@ -44,7 +44,7 @@ chroot environment
 Download
 --------
 
-https://dl.dropboxusercontent.com/u/170011615/pylab3chroot.tar.xz
+https://dl.dropboxusercontent.com/u/170011615/python3pylab.tar.xz
 
 start-chroot
 ------------

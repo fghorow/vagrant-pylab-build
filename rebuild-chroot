@@ -1,35 +1,27 @@
 #!/usr/bin/env bash
 
-rm -rf --one-file-system pylab3chroot
+rm -rf --one-file-system python3pylab
 set -e
 UMIRROR=`curl -s http://mirrors.ubuntu.com/mirrors.txt | head -n 1`
-debootstrap --variant=buildd --arch amd64 raring pylab3chroot $UMIRROR
-mount --rbind /dev pylab3chroot/dev
-mount --rbind /proc pylab3chroot/proc
-mount --rbind /sys pylab3chroot/sys
-mount --rbind /run pylab3chroot/run
-mount --rbind /tmp pylab3chroot/tmp
-chroot pylab3chroot su <<SCRIPT
+debootstrap --variant=buildd --arch amd64 raring python3pylab $UMIRROR
+mount --rbind /dev python3pylab/dev
+mount --rbind /proc python3pylab/proc
+mount --rbind /sys python3pylab/sys
+mount --rbind /run python3pylab/run
+mount --rbind /tmp python3pylab/tmp
+cp sources.list python3pylab/etc/apt
+chroot python3pylab su <<SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
   # Safe update
-  cp pylab3chroot/etc/apt/sources.list pylab3chroot/etc/apt/sources.list.old.pylab
-  # Enabling mirrors
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring main restricted universe multiverse > pylab3chroot/etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring-updates main restricted universe multiverse >> pylab3chroot/etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring-backports main restricted universe multiverse >> pylab3chroot/etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring-security main restricted universe multiverse >> pylab3chroot/etc/apt/sources.list
-  echo >> pylab3chroot/etc/apt/sources.list
-  cat < pylab3chroot/etc/apt/sources.list.old.pylab >> pylab3chroot/etc/apt/sources.list
-
   apt-get -y update
   apt-get -y install sudo locales aptitude
   locale-gen en_US.utf8
   aptitude -y safe-upgrade
   ldconfig
 SCRIPT
-mkdir -p pylab3chroot/vagrant
-cp build_pyside pylab3chroot/vagrant
-chroot pylab3chroot su < rebuild-packages
-chroot pylab3chroot aptitude -y update
-chroot pylab3chroot ldconfig
+mkdir -p python3pylab/vagrant
+cp build_pyside python3pylab/vagrant
+chroot python3pylab su < rebuild-packages
+chroot python3pylab aptitude -y update
+chroot python3pylab ldconfig
