@@ -34,23 +34,23 @@ EOFL
   aptitude -y clean
   aptitude -y autoclean
   # Python tools
-  #pip3 install pytz
-  pip3 install six
-  pip3 install numpy
-  pip3 install scipy
-  pip3 install python-dateutil
-  pip3 install jinja2
-  pip3 install ipython
-  pip3 install tornado
-  pip3 install pyzmq
-  pip3 install pygments
-  pip3 install matplotlib
-  #pip3 install pysox
-  pip3 install freeze
-  pip3 install numexpr
-  pip3 install pandas
-  pip3 install cython
-  pip3 install git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
+  #pip3 install --upgrade pytz
+  pip3 install --upgrade six
+  pip3 install --upgrade numpy
+  pip3 install --upgrade scipy
+  pip3 install --upgrade python-dateutil
+  pip3 install --upgrade jinja2
+  pip3 install --upgrade ipython
+  pip3 install --upgrade tornado
+  pip3 install --upgrade pyzmq
+  pip3 install --upgrade pygments
+  pip3 install --upgrade matplotlib
+  #pip3 install --upgrade pysox
+  pip3 install --upgrade freeze
+  pip3 install --upgrade numexpr
+  pip3 install --upgrade pandas
+  pip3 install --upgrade cython
+  pip3 install --upgrade git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
 
   # pip will be cleaned because it works in temp
   rm -rf distribute-*.tar.gz
