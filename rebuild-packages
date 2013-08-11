@@ -34,7 +34,7 @@ EOFL
   aptitude -y clean
   aptitude -y autoclean
   # Python tools
-  #pip3 install --upgrade pytz
+  pip3 install --upgrade pytz
   pip3 install --upgrade six
   pip3 install --upgrade numpy
   pip3 install --upgrade scipy
@@ -45,7 +45,7 @@ EOFL
   pip3 install --upgrade pyzmq
   pip3 install --upgrade pygments
   pip3 install --upgrade matplotlib
-  #pip3 install --upgrade pysox
+  pip3 install --upgrade pysox
   pip3 install --upgrade freeze
   pip3 install --upgrade numexpr
   pip3 install --upgrade pandas
