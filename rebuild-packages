@@ -28,8 +28,6 @@ EOFL
   aptitude -y install texlive dvipng python3-pyside
   aptitude -y install cmake libqt4-dev libxml2-dev libxslt1-dev qtmobility-dev
   # Clean up
-  aptitude -y purge linux-headers-3.2.0-23-generic linux-headers-3.2.0-23
-  aptitude -y purge linux-image-3.2.0-23-generic
   apt-get autoremove
   aptitude -y clean
   aptitude -y autoclean
