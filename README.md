@@ -32,11 +32,6 @@ vagrant init pylab
 vagrant up
 ````
 
-**YOU NEED TO FIREWALL VBoxHeadless or the notebook and ssh port.**
-
--> The problem will be fixed with vagrant 1.2.3: https://github.com/Aigeruth/vagrant/commit/2979b0ad64593b1922d47e0db1a266c2aa026dfa
-I will adapt this as soon as possible!
-
 Browse http://localhost:8888 (or port displayed)
 
 chroot-pylab-build
@@ -65,4 +60,3 @@ sudo ./start-chroot
 ````cron
 @reboot HOME=/home/ganwell USER=ganwell /home/ganwell/prj/vagrant-pylab-build/start-chroot
 ````
-

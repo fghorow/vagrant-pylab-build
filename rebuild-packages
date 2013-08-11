@@ -4,34 +4,29 @@
   export DEBIAN_FRONTEND=noninteractive
   apt-get -y --reinstall install aptitude
   aptitude -y install build-essential
-  aptitude -o Aptitude::Cmdline::ignore-trust-violations=true -y install python3.3
-  aptitude -o Aptitude::Cmdline::ignore-trust-violations=true -y install python3.3-dev
+  aptitude -y install python3 python3-dev python3-pip
+  aptitude -y install python3-software-properties
+  add-apt-repository -y ppa:pi-rho/dev
+  cat > /etc/apt/preferences.d/pi-rho-dev <<EOFL
+Package: *
+Pin: release o=LP-PPA-pi-rho-dev
+Pin-Priority: 400
+
+Package: vim*
+Pin: release o=LP-PPA-pi-rho-dev
+Pin-Priority: 500
+EOFL
   aptitude -y install curl
   # Packages are complaining about old zmq
   # Let pyzmq use its own zmq
   # aptitude -y install libzmq-dev
   aptitude -y install libsox-dev sox gfortran libopenblas-dev liblapack-dev alsa-base
   aptitude -y install git clang libclang1 exuberant-ctags tmux libclang-dev
-  aptitude -y install vim vim-python
+  aptitude -y install vim-nox
   # Matplotlib build depends (matplotlib not available for python3 on ubuntu)
   aptitude -y install libpng-dev libfreetype6-dev libgtk2.0-dev librsvg2-dev
-  aptitude -y install texlive dvipng
-  # Install pip
-  curl http://python-distribute.org/distribute_setup.py | python3.3
-  curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python3.3
-  # PySide
-  cd /vagrant
+  aptitude -y install texlive dvipng python3-pyside
   aptitude -y install cmake libqt4-dev libxml2-dev libxslt1-dev qtmobility-dev
-  git clone https://github.com/PySide/BuildScripts.git
-  cd BuildScripts
-  git submodule init
-  git submodule update
-  export PYSIDE_BUILDSCRIPTS_USE_PYTHON3=yes
-  cp /vagrant/build_pyside .
-  ./build_pyside
-  cd /vagrant
-  rm -rf BuildScripts
-  cd \$HOME
   # Clean up
   aptitude -y purge linux-headers-3.2.0-23-generic linux-headers-3.2.0-23
   aptitude -y purge linux-image-3.2.0-23-generic
@@ -39,26 +34,28 @@
   aptitude -y clean
   aptitude -y autoclean
   # Python tools
-  pip-3.3 install pytz
-  pip-3.3 install six
-  pip-3.3 install numpy
-  pip-3.3 install scipy
-  pip-3.3 install python-dateutil
-  pip-3.3 install ipython
-  pip-3.3 install tornado
-  pip-3.3 install pyzmq
-  pip-3.3 install pygments
-  pip-3.3 install matplotlib
-  pip-3.3 install pysox
-  pip-3.3 install freeze
-  pip-3.3 install numexpr
-  pip-3.3 install pandas
-  pip-3.3 install cython
-  pip-3.3 install git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
+  #pip3 install pytz
+  pip3 install six
+  pip3 install numpy
+  pip3 install scipy
+  pip3 install python-dateutil
+  pip3 install jinja2
+  pip3 install ipython
+  pip3 install tornado
+  pip3 install pyzmq
+  pip3 install pygments
+  pip3 install matplotlib
+  #pip3 install pysox
+  pip3 install freeze
+  pip3 install numexpr
+  pip3 install pandas
+  pip3 install cython
+  pip3 install git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
 
   # pip will be cleaned because it works in temp
   rm -rf distribute-*.tar.gz
   rm -rf src
   rm -rf postinstall.sh
+  ldconfig
 LEVEL2SCRIPT
 

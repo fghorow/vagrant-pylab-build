@@ -3,17 +3,25 @@
 rm -rf --one-file-system pylab3chroot
 set -e
 UMIRROR=`curl -s http://mirrors.ubuntu.com/mirrors.txt | head -n 1`
-debootstrap --variant=buildd --arch amd64 precise pylab3chroot $UMIRROR
+debootstrap --variant=buildd --arch amd64 raring pylab3chroot $UMIRROR
 mount --rbind /dev pylab3chroot/dev
 mount --rbind /proc pylab3chroot/proc
 mount --rbind /sys pylab3chroot/sys
 mount --rbind /run pylab3chroot/run
 mount --rbind /tmp pylab3chroot/tmp
-cat sources.list.mirror | sed "s,XMIRROR,$UMIRROR,g" > pylab3chroot/etc/apt/sources.list
 chroot pylab3chroot su <<SCRIPT
   set -e
   export DEBIAN_FRONTEND=noninteractive
   # Safe update
+  cp pylab3chroot/etc/apt/sources.list pylab3chroot/etc/apt/sources.list.old.pylab
+  # Enabling mirrors
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring main restricted universe multiverse > pylab3chroot/etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring-updates main restricted universe multiverse >> pylab3chroot/etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring-backports main restricted universe multiverse >> pylab3chroot/etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring-security main restricted universe multiverse >> pylab3chroot/etc/apt/sources.list
+  echo >> pylab3chroot/etc/apt/sources.list
+  cat < pylab3chroot/etc/apt/sources.list.old.pylab >> pylab3chroot/etc/apt/sources.list
+
   apt-get -y update
   apt-get -y install sudo locales aptitude
   locale-gen en_US.utf8
@@ -23,6 +31,5 @@ SCRIPT
 mkdir -p pylab3chroot/vagrant
 cp build_pyside pylab3chroot/vagrant
 chroot pylab3chroot su < rebuild-packages
-cp sources.list pylab3chroot/etc/apt/
 chroot pylab3chroot aptitude -y update
 chroot pylab3chroot ldconfig

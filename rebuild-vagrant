@@ -13,17 +13,16 @@ vagrant ssh <<SCRIPT
   export DEBIAN_FRONTEND=noninteractive
   cp /etc/apt/sources.list /etc/apt/sources.list.old.pylab
   # Enabling mirrors
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse > /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse >> /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restricted universe multiverse >> /etc/apt/sources.list
-  echo deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse >> /etc/apt/sources.list
-  echo >> /etc/apt/sources.list
-  echo deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu precise main >> /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring main restricted universe multiverse > /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring-updates main restricted universe multiverse >> /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring-backports main restricted universe multiverse >> /etc/apt/sources.list
+  echo deb mirror://mirrors.ubuntu.com/mirrors.txt raring-security main restricted universe multiverse >> /etc/apt/sources.list
   echo >> /etc/apt/sources.list
   cat < /etc/apt/sources.list.old.pylab >> /etc/apt/sources.list
   # Safe update
   aptitude -y update
   aptitude -y safe-upgrade
+  aptitude -y purge virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 LEVEL2SCRIPT
 SCRIPT
 vagrant halt
