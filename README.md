@@ -8,8 +8,6 @@ Deploy them on your servers, create unit-test scripts that will never fail becau
 dependencies and replace your development environment on the fly without breaking other
 software your machine.
 
-Python installed from dead snakes: https://launchpad.net/~fkrull/+archive/deadsnakes
-
 vagrant-pylab-build
 ==================
 
