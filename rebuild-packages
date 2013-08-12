@@ -25,7 +25,7 @@ EOFL
   aptitude -y install vim-nox
   # Matplotlib build depends (matplotlib not available for python3 on ubuntu)
   aptitude -y install libpng-dev libfreetype6-dev libgtk2.0-dev librsvg2-dev
-  aptitude -y install texlive pgf dvipng pandoc python3-pyside
+  aptitude -y install texlive-latex-extra texlive pgf dvipng pandoc python3-pyside
   aptitude -y install cmake libqt4-dev libxml2-dev libxslt1-dev qtmobility-dev
   # Clean up
   apt-get autoremove
@@ -50,7 +50,7 @@ EOFL
   pip3 install --upgrade cython
   pip3 install --upgrade sphinx
   pip3 install --upgrade git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
-
+  pip3 install --upgrade git+https://github.com/epmoyer/ipy_table.git
   # pip will be cleaned because it works in temp
   rm -rf distribute-*.tar.gz
   rm -rf src
