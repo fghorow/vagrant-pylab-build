@@ -36,7 +36,7 @@ vagrant up --no-provision
 vagrant ssh <<SCRIPT
   sudo addgroup vagrant audio
   sudo e4defrag /
-  dd if=/dev/zero of=/tmp/zero.pylab bs=2048
+  dd if=/dev/zero of=/tmp/zero.pylab bs=512
   sync
   rm /tmp/zero.pylab
   sync
