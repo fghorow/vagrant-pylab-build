@@ -16,6 +16,7 @@ Package: vim*
 Pin: release o=LP-PPA-pi-rho-dev
 Pin-Priority: 500
 EOFL
+  aptitude -y update
   aptitude -y install curl
   # Packages are complaining about old zmq
   # Let pyzmq use its own zmq
