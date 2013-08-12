@@ -25,13 +25,19 @@ vagrant ssh <<SCRIPT
   aptitude -y purge virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 LEVEL2SCRIPT
 SCRIPT
+set +e
 vagrant halt
 sleep 10
+set -e
+vagrant halt
 vagrant up --no-provision
 vagrant vbguest
 vagrant ssh < rebuild-packages
+set +e
 vagrant halt
 sleep 10
+set -e
+vagrant halt
 vagrant up --no-provision
 vagrant ssh <<SCRIPT
   sudo addgroup vagrant audio
@@ -41,8 +47,11 @@ vagrant ssh <<SCRIPT
   rm /tmp/zero.pylab
   sync
 SCRIPT
+set +e
 vagrant halt
 sleep 10
+set -e
+vagrant halt
 HDDID=`VBoxManage showvminfo python3pylab --machinereadable | \
      grep "SATAController-ImageUUID-" | cut -d = -f 2 | tr -d \"`
 HDDFILE=`VBoxManage showvminfo python3pylab --machinereadable | \
