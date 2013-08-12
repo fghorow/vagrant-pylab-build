@@ -10,7 +10,8 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "python3pylab"
     v.customize ["modifyvm", :id, "--memory", 1024]
-	v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
   $script = <<SCRIPT
