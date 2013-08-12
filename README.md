@@ -8,6 +8,12 @@ Deploy them on your servers, create unit-test scripts that will never fail becau
 dependencies and replace your development environment on the fly without breaking other
 software your machine.
 
+Changes
+-------
+
+* 2013-08-12 Updated to raring, standard python3.3 and standard pyside
+* 2013-08-12 Removed most of texlive doc making the image even smaller
+
 vagrant-pylab-build
 ==================
 
