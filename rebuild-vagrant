@@ -44,9 +44,9 @@ SCRIPT
 vagrant halt
 sleep 10
 HDDID=`VBoxManage showvminfo python3pylab --machinereadable | \
-     grep "SATA Controller-ImageUUID-" | cut -d = -f 2 | tr -d \"`
+     grep "SATAController-ImageUUID-" | cut -d = -f 2 | tr -d \"`
 HDDFILE=`VBoxManage showvminfo python3pylab --machinereadable | \
-     grep "SATA Controller-" | grep -v -- "-ImageUUID-" | cut -d = -f 2 | tr -d \"`
+     grep "SATAController-" | grep -v -- "-ImageUUID-" | cut -d = -f 2 | tr -d \"`
 VBoxManage clonehd "$HDDID" ./out.vmdk
 VBoxManage internalcommands sethduuid ./out.vmdk "$HDDID"
 echo Old size
