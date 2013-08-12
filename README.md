@@ -64,3 +64,12 @@ sudo ./start-chroot
 ````cron
 @reboot HOME=/home/ganwell USER=ganwell /home/ganwell/prj/vagrant-pylab-build/start-chroot
 ````
+
+sha256 sums
+===========
+
+````
+$> openssl dgst -sha256 python3pylab.*
+SHA256(python3pylab.box)=f7cca13d4329044be06e1103b4ce8c17503b2c708b004e410feadd18d674b87e
+SHA256(python3pylab.tar.xz)=344e4d6952165466ff7bd349e07dee787b97f0d637aa058928b15d19f2ff1916
+````
