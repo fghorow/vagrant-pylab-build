@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+vagrant halt
 vagrant package --base python3pylab --output python3pylab.box --vagrantfil  Vagrantfile.package
