@@ -70,6 +70,6 @@ sha256 sums
 
 ````
 $> openssl dgst -sha256 python3pylab.*
-SHA256(python3pylab.box)=f7cca13d4329044be06e1103b4ce8c17503b2c708b004e410feadd18d674b87e
-SHA256(python3pylab.tar.xz)=344e4d6952165466ff7bd349e07dee787b97f0d637aa058928b15d19f2ff1916
+SHA256(python3pylab.box)= f95cc134050967af5893ec41d052120dad2abd2b051c5b80f0da5e424cf46cde
+SHA256(python3pylab.tar.xz)= 51a5ec9bea80d1097169ca61270a1786885decb1ef471f9ce41e42a024e43e2f
 ````
