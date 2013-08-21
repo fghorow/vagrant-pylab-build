@@ -4,7 +4,8 @@
   export DEBIAN_FRONTEND=noninteractive
   apt-get -y --reinstall install aptitude
   aptitude -y install build-essential
-  aptitude -y install python3 python3-dev python3-pip python-pip
+  aptitude -y install python3 python3-dev python3-pip
+  aptitude -y install python python-dev python-pip
   aptitude -y install software-properties-common
   add-apt-repository -y ppa:pi-rho/dev
   cat > /etc/apt/preferences.d/pi-rho-dev <<EOFL
@@ -28,32 +29,61 @@ EOFL
   aptitude -y install libpng-dev libfreetype6-dev libgtk2.0-dev librsvg2-dev
   aptitude -y install --without-recommends texlive texlive-latex-extra pgf
   aptitude -y install dvipng pandoc python3-pyside
+  aptitude -y install python-pyside
   aptitude -y install cmake libqt4-dev libxml2-dev libxslt1-dev qtmobility-dev
   # Clean up
   apt-get autoremove
   aptitude -y clean
   aptitude -y autoclean
   # Python tools
-  pip install --upgrade pylama
-  pip3 install --upgrade pytz
-  pip3 install --upgrade six
-  pip3 install --upgrade numpy
-  pip3 install --upgrade scipy
-  pip3 install --upgrade python-dateutil
-  pip3 install --upgrade jinja2
-  pip3 install --upgrade ipython
-  pip3 install --upgrade tornado
-  pip3 install --upgrade pyzmq
-  pip3 install --upgrade pygments
-  pip3 install --upgrade matplotlib
-  pip3 install --upgrade pysox
-  pip3 install --upgrade freeze
-  pip3 install --upgrade numexpr
-  pip3 install --upgrade pandas
-  pip3 install --upgrade cython
-  pip3 install --upgrade sphinx
-  pip3 install --upgrade git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
-  pip3 install --upgrade git+https://github.com/epmoyer/ipy_table.git
+  pip-2.7 install --upgrade pip
+  pip-3.3 install --upgrade pip
+  hash -r
+  pip-2.7 install --upgrade pylama
+  pip-2.7 install --upgrade --pre pytz
+  pip-2.7 install --upgrade --pre pysox
+  pip-2.7 install --upgrade six
+  pip-2.7 install --upgrade numpy
+  pip-2.7 install --upgrade scipy
+  pip-2.7 install --upgrade python-dateutil
+  pip-2.7 install --upgrade jinja2
+  rm -rf /tmp/pip*build*
+  pip-2.7 install --upgrade ipython
+  pip-2.7 install --upgrade tornado
+  pip-2.7 install --upgrade pyzmq
+  pip-2.7 install --upgrade pygments
+  pip-2.7 install --upgrade matplotlib
+  rm -rf /tmp/pip*build*
+  pip-2.7 install --upgrade freeze
+  pip-2.7 install --upgrade numexpr
+  pip-2.7 install --upgrade pandas
+  pip-2.7 install --upgrade cython
+  pip-2.7 install --upgrade sphinx
+  rm -rf /tmp/pip*build*
+  pip-2.7 install --upgrade git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
+  pip-2.7 install --upgrade git+https://github.com/epmoyer/ipy_table.git
+  pip-3.3 install --upgrade --pre pytz
+  pip-3.3 install --upgrade --pre pysox
+  pip-3.3 install --upgrade six
+  pip-3.3 install --upgrade numpy
+  pip-3.3 install --upgrade scipy
+  pip-3.3 install --upgrade python-dateutil
+  pip-3.3 install --upgrade jinja2
+  rm -rf /tmp/pip*build*
+  pip-3.3 install --upgrade ipython
+  pip-3.3 install --upgrade tornado
+  pip-3.3 install --upgrade pyzmq
+  pip-3.3 install --upgrade pygments
+  pip-3.3 install --upgrade matplotlib
+  rm -rf /tmp/pip*build*
+  pip-3.3 install --upgrade freeze
+  pip-3.3 install --upgrade numexpr
+  pip-3.3 install --upgrade pandas
+  pip-3.3 install --upgrade cython
+  pip-3.3 install --upgrade sphinx
+  rm -rf /tmp/pip*build*
+  pip-3.3 install --upgrade git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
+  pip-3.3 install --upgrade git+https://github.com/epmoyer/ipy_table.git
   # pip will be cleaned because it works in temp
   rm -rf distribute-*.tar.gz
   rm -rf src
