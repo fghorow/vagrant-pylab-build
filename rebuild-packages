@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
   sudo bash <<LEVEL2SCRIPT
   set -e
   cd \$HOME
@@ -35,55 +36,7 @@ EOFL
   apt-get autoremove
   aptitude -y clean
   aptitude -y autoclean
-  # Python tools
-  pip-2.7 install --upgrade pip
-  pip-3.3 install --upgrade pip
-  hash -r
-  pip-2.7 install --upgrade pylama
-  pip-2.7 install --upgrade --pre pytz
-  pip-2.7 install --upgrade --pre pysox
-  pip-2.7 install --upgrade six
-  pip-2.7 install --upgrade numpy
-  pip-2.7 install --upgrade scipy
-  pip-2.7 install --upgrade python-dateutil
-  pip-2.7 install --upgrade jinja2
-  rm -rf /tmp/pip*build*
-  pip-2.7 install --upgrade ipython
-  pip-2.7 install --upgrade tornado
-  pip-2.7 install --upgrade pyzmq
-  pip-2.7 install --upgrade pygments
-  pip-2.7 install --upgrade matplotlib
-  rm -rf /tmp/pip*build*
-  pip-2.7 install --upgrade freeze
-  pip-2.7 install --upgrade numexpr
-  pip-2.7 install --upgrade pandas
-  pip-2.7 install --upgrade cython
-  pip-2.7 install --upgrade sphinx
-  rm -rf /tmp/pip*build*
-  pip-2.7 install --upgrade git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
-  pip-2.7 install --upgrade git+https://github.com/epmoyer/ipy_table.git
-  pip-3.3 install --upgrade --pre pytz
-  pip-3.3 install --upgrade --pre pysox
-  pip-3.3 install --upgrade six
-  pip-3.3 install --upgrade numpy
-  pip-3.3 install --upgrade scipy
-  pip-3.3 install --upgrade python-dateutil
-  pip-3.3 install --upgrade jinja2
-  rm -rf /tmp/pip*build*
-  pip-3.3 install --upgrade ipython
-  pip-3.3 install --upgrade tornado
-  pip-3.3 install --upgrade pyzmq
-  pip-3.3 install --upgrade pygments
-  pip-3.3 install --upgrade matplotlib
-  rm -rf /tmp/pip*build*
-  pip-3.3 install --upgrade freeze
-  pip-3.3 install --upgrade numexpr
-  pip-3.3 install --upgrade pandas
-  pip-3.3 install --upgrade cython
-  pip-3.3 install --upgrade sphinx
-  rm -rf /tmp/pip*build*
-  pip-3.3 install --upgrade git+git://github.com/adfinis-sygroup/adsy-python.git#egg=adsy
-  pip-3.3 install --upgrade git+https://github.com/epmoyer/ipy_table.git
+  bash rebuild-pip-packages
   # pip will be cleaned because it works in temp
   rm -rf distribute-*.tar.gz
   rm -rf src
